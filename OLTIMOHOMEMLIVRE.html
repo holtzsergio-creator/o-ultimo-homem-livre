@@ -1,0 +1,117 @@
+<html>
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+    <style type="text/css">
+        @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500&display=swap');
+        body {
+            background-color: #f5f5f5;
+            font-family: "Arial", sans-serif;
+            color: #333;
+            max-width: 600px;
+            margin: auto;
+            padding: 72pt;
+            line-height: 1.6;
+        }
+        .dourado {
+            color: #7f6000;
+            font-weight: bold;
+        }
+        .destaque-humano {
+            font-family: 'Caveat', cursive;
+            font-size: 18px;
+        }
+        .centro {
+            text-align: center;
+        }
+        a.normose-link {
+            color: #7f6000;
+            font-weight: bold;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        #popup {
+            display: none;
+            position: absolute;
+            background: white;
+            border: 1px solid #7f6000;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 3px 3px 10px rgba(0,0,0,0.2);
+            z-index: 100;
+            font-family: Arial;
+            font-size: 11pt;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <h2 class="centro">O ÚLTIMO HOMEM LIVRE</h2>
+
+    <p>Pedrinho não tinha nome, apenas um apelido: “<span class="destaque-humano">Filho do Seo Pedro</span>”. Ele foi o primeiro a ser curado da <a class="normose-link" onclick="mostrarPopup(event)">normose</a>. Agora, enxergava o mundo cheio de certezas absolutas e sorrisos perfeitos. Ele via a <span class="dourado">teia de fios dourados</span> que conectava todos na rua e até sentia inveja. Quis mesmo partilhar daquela <span class="dourado">teia radiosa e maravilhosa</span>. As pessoas marchavam apressadas e convictas, sorriam e concordavam, faziam seus negócios e prosperavam.</p>
+
+    <p>Mas, o diagnóstico estava errado. Ele não era o primeiro a ser curado. Era o único que ainda não havia sido infectado pelo novo <span class="dourado">patógeno tecnológico alienígena de conformidade</span> que varreu a Terra. Os humanos ao seu redor não estavam doentes. Estavam <span class="dourado">perfeitamente adaptados</span>. Ele era a aberração. A falha. A <span class="dourado">última peça a ser recolocada no lugar</span>.</p>
+
+    <p>Anos se passaram. Pedrinho cresceu e virou o Seo Pedro, <span class="destaque-humano">aquele que se escondia nas sombras, porque doía se sentir livre, o último farol de consciência em um mundo adormecido, ele era um monstro de perguntas. O peso esmagador de cada escolha — que roupa vestir, que rumo tomar, qual profissão escolher, shih-tzu ou zwergspitz, casar e constituir família estava fora de questão — era seu novo e solitário inferno. A liberdade, descobriu, era a mais terrível das sentenças.</span></p>
+
+    <p>Um dia, uma criança o viu. Seus olhos não eram vazios, mas cheios de uma pena profunda e antiga.</p>
+
+    <p>— "<span class="destaque-humano">O pobre homem doente</span>", sussurrou ela para a mãe, apontando para Pedro. "<span class="destaque-humano">Por que ele ainda não foi consertado?</span>"</p>
+
+    <!-- POPUP DEFINITION -->
+    <div id="popup">
+        <strong>normose</strong> (n.f.): patologia social caracterizada pela adesão compulsiva e não crítica às normas, convenções e comportamentos do grupo, resultando na diminuição da autonomia individual e na percepção da liberdade como uma anomalia.
+    </div>
+
+    <!-- SUGESTÃO DE SOM (DESCOMENTE PARA USAR) -->
+
+    <audio id="ambienteSound" loop>
+        <source src="low_buzz.mp3" type="audio/mpeg">
+        Seu navegador não suporta o elemento de áudio.
+    </audio>
+
+<script>
+    // Função para mostrar o popup
+    function mostrarPopup(event) {
+        event.preventDefault();
+        var popup = document.getElementById("popup");
+        popup.style.display = 'block';
+        popup.style.left = (event.pageX + 10) + 'px';
+        popup.style.top = (event.pageY + 10) + 'px';
+
+        // Esconde o popup depois de 5 segundos ou se clicar fora
+        setTimeout(function() { popup.style.display = 'none'; }, 5000);
+    }
+    document.addEventListener('click', function(e) {
+        if (e.target.id !== 'popup' && !e.target.classList.contains('normose-link')) {
+            document.getElementById('popup').style.display = 'none';
+        }
+    });
+
+    // *** CÓDIGO NOVO PARA O SOM ***
+    let somFoiIniciado = false;
+    const audioPlayer = document.getElementById('ambienteSound');
+
+    // Função para iniciar o som
+    function iniciarSom() {
+        if (!somFoiIniciado) {
+            audioPlayer.play()
+                .then(() => {
+                    somFoiIniciado = true;
+                    console.log("Som iniciado!");
+                    // Opcional: Remover o listener após o primeiro clique
+                    document.removeEventListener('click', iniciarSom);
+                })
+                .catch(error => {
+                    console.error("Falha ao reproduzir o som:", error);
+                });
+        }
+    }
+
+    // Ouvinte de evento: inicia o som no primeiro clique em qualquer lugar do corpo
+    document.addEventListener('click', iniciarSom);
+    // *** FIM DO CÓDIGO NOVO ***
+</script>
+
+</body>
+</html>
